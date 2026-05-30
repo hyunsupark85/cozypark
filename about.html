@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About — Hyunsu Park</title>
+  <meta name="description" content="Hyunsu Park — photographer. Contact.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Nanum+Myeongjo:wght@400;700&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <a href="index.html">Hyunsu Park<span class="dot">.</span></a>
+      <span class="brand-sub">Photographs &amp; Notes</span>
+    </div>
+    <nav class="nav">
+      <a href="index.html">Index</a>
+      <a href="about.html" aria-current="page">About</a>
+    </nav>
+  </header>
+
+  <section class="about">
+    <h1>Hyunsu Park</h1>
+    <div class="role">Photographer</div>
+
+    <p class="note">사진을 찍고, 그 곁에 짧은 글을 남깁니다. 오래 보아도 질리지 않는 장면을 좋아합니다.</p>
+
+    <div class="contact">
+      <div class="row">
+        <span class="label">Email</span>
+        <span class="value"><a href="mailto:hyunsupark85@gmail.com">hyunsupark85@gmail.com</a></span>
+      </div>
+      <div class="row">
+        <span class="label">Instagram</span>
+        <span class="value"><a href="https://instagram.com/hyunsupark" target="_blank" rel="noopener">@hyunsupark</a></span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <span>&copy; <span id="yr"></span> Hyunsu Park</span>
+    <span><a href="index.html">Index</a></span>
+  </footer>
+
+  <script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
+</body>
+</html>

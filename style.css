@@ -1,0 +1,339 @@
+/* =========================================================
+   Hyunsu Park — photo journal
+   조용한 문예지/사진집 톤: 따뜻한 종이, 잉크, 여백
+   ========================================================= */
+
+:root {
+  --paper:      #f3efe6;   /* 따뜻한 종이 배경 */
+  --paper-deep: #ebe5d8;   /* 살짝 짙은 면 */
+  --ink:        #211d18;   /* 본문 잉크 */
+  --ink-soft:   #6f675b;   /* 보조 텍스트 */
+  --line:       #d8d0bf;   /* 구분선 */
+  --accent:     #9a5b3b;   /* 클레이/테라코타 강조 */
+  --shadow:     rgba(33, 29, 24, 0.18);
+
+  --serif:  "Fraunces", "Nanum Myeongjo", Georgia, serif;
+  --kor:    "Nanum Myeongjo", "Fraunces", serif;
+  --mono:   "Spline Sans Mono", "JetBrains Mono", ui-monospace, monospace;
+
+  --maxw: 1180px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--kor);
+  line-height: 1.7;
+  /* 종이 질감: 아주 미세한 노이즈 */
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,.35), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(154,91,59,.05), transparent 45%);
+  background-attachment: fixed;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ---------- 헤더 ---------- */
+.site-header {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 3.2rem 1.6rem 1.4rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font-family: var(--serif);
+  font-weight: 340;
+  font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+.brand a { display: inline-block; }
+.brand .dot { color: var(--accent); }
+
+.brand-sub {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 0.55rem;
+}
+
+.nav {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  display: flex;
+  gap: 1.6rem;
+  text-transform: uppercase;
+}
+.nav a {
+  position: relative;
+  padding-bottom: 3px;
+  color: var(--ink-soft);
+  transition: color .25s;
+}
+.nav a:hover, .nav a[aria-current="page"] { color: var(--ink); }
+.nav a::after {
+  content: "";
+  position: absolute; left: 0; bottom: 0;
+  width: 0; height: 1px; background: var(--accent);
+  transition: width .3s ease;
+}
+.nav a:hover::after, .nav a[aria-current="page"]::after { width: 100%; }
+
+/* ---------- 인트로 문구 ---------- */
+.lede {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 2.6rem 1.6rem 1rem;
+}
+.lede p {
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+  font-weight: 340;
+  line-height: 1.5;
+  max-width: 30ch;
+  color: var(--ink);
+}
+
+/* ---------- 갤러리 ---------- */
+main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.6rem 6rem; }
+
+.issue { margin-top: 3.4rem; }
+.issue-head {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.6rem;
+  border-bottom: 1px solid var(--line);
+}
+.issue-no {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+.issue-title {
+  font-family: var(--serif);
+  font-weight: 340;
+  font-size: clamp(1.5rem, 3.4vw, 2.2rem);
+  letter-spacing: -0.01em;
+}
+.issue-count {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  margin-left: auto;
+  letter-spacing: 0.12em;
+}
+
+/* 메이슨리: CSS columns (가장 견고함) */
+.grid {
+  column-count: 3;
+  column-gap: 1.4rem;
+}
+@media (max-width: 900px) { .grid { column-count: 2; } }
+@media (max-width: 560px) { .grid { column-count: 1; } }
+
+.card {
+  break-inside: avoid;
+  margin: 0 0 1.4rem;
+  cursor: zoom-in;
+  position: relative;
+}
+.card .frame {
+  overflow: hidden;
+  background: var(--paper-deep);
+  box-shadow: 0 1px 2px var(--shadow);
+  transition: box-shadow .35s ease, transform .35s ease;
+}
+.card:hover .frame {
+  box-shadow: 0 14px 30px var(--shadow);
+  transform: translateY(-3px);
+}
+.card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* 로드 전 자리 확보로 레이아웃 흔들림 방지 (aspect-ratio는 인라인 지정) */
+}
+.card figcaption {
+  font-family: var(--kor);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin-top: 0.6rem;
+  line-height: 1.55;
+}
+.card .meta {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+  margin-top: 0.35rem;
+  opacity: 0.7;
+}
+
+/* 진입 애니메이션 */
+.card { opacity: 0; transform: translateY(14px); }
+.card.in { opacity: 1; transform: translateY(0);
+  transition: opacity .7s ease, transform .7s ease; }
+
+/* ---------- 빈 상태 ---------- */
+.empty {
+  text-align: center;
+  padding: 5rem 1rem;
+  color: var(--ink-soft);
+  font-family: var(--serif);
+  font-size: 1.2rem;
+}
+.empty code {
+  font-family: var(--mono);
+  background: var(--paper-deep);
+  padding: 0.15em 0.5em;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+/* ---------- 라이트박스 ---------- */
+.lightbox {
+  position: fixed; inset: 0;
+  background: rgba(28, 24, 19, 0.94);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 4vh 4vw;
+  cursor: zoom-out;
+}
+.lightbox.open { display: flex; }
+.lightbox figure { margin: 0; max-width: 100%; max-height: 100%;
+  display: flex; flex-direction: column; align-items: center; }
+.lightbox img {
+  max-width: 100%;
+  max-height: 82vh;
+  object-fit: contain;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+}
+.lightbox figcaption {
+  color: #e9e2d4;
+  font-family: var(--kor);
+  margin-top: 1.1rem;
+  text-align: center;
+  max-width: 60ch;
+  font-size: 1rem;
+}
+.lightbox .lb-meta {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: #b6ac98;
+  margin-top: 0.5rem;
+}
+.lb-btn {
+  position: fixed;
+  top: 50%; transform: translateY(-50%);
+  background: none; border: none;
+  color: #e9e2d4; font-size: 2.4rem;
+  cursor: pointer; padding: 1rem; line-height: 1;
+  font-family: var(--serif); opacity: .6; transition: opacity .2s;
+}
+.lb-btn:hover { opacity: 1; }
+.lb-prev { left: 0.5rem; }
+.lb-next { right: 0.5rem; }
+.lb-close {
+  position: fixed; top: 1rem; right: 1.2rem;
+  background: none; border: none; color: #e9e2d4;
+  font-family: var(--mono); font-size: 0.8rem; letter-spacing: .15em;
+  cursor: pointer; opacity: .7;
+}
+.lb-close:hover { opacity: 1; }
+
+/* ---------- About ---------- */
+.about {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem 1.6rem 6rem;
+}
+.about h1 {
+  font-family: var(--serif);
+  font-weight: 340;
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  letter-spacing: -0.02em;
+  margin: 0 0 0.3rem;
+}
+.about .role {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2.4rem;
+}
+.about .note {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 340;
+  line-height: 1.7;
+  color: var(--ink);
+  max-width: 34ch;
+  margin-bottom: 3rem;
+}
+.contact { border-top: 1px solid var(--line); }
+.contact .row {
+  display: flex;
+  align-items: baseline;
+  gap: 1.4rem;
+  padding: 1.05rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.contact .label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  width: 92px;
+  flex-shrink: 0;
+}
+.contact .value {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+}
+.contact .value a { border-bottom: 1px solid transparent; transition: border-color .25s; }
+.contact .value a:hover { border-color: var(--accent); }
+
+/* ---------- 푸터 ---------- */
+.site-footer {
+  border-top: 1px solid var(--line);
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 2rem 1.6rem 3rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.site-footer a:hover { color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  .card { opacity: 1; transform: none; }
+}

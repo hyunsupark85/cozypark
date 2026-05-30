@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hyunsu Park</title>
+  <meta name="description" content="Hyunsu Park — 사진과 글의 기록.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Nanum+Myeongjo:wght@400;700&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <a href="index.html">Hyunsu Park<span class="dot">.</span></a>
+      <span class="brand-sub">Photographs &amp; Notes</span>
+    </div>
+    <nav class="nav">
+      <a href="index.html" aria-current="page">Index</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <section class="lede">
+    <p>빛이 머문 자리, 계절이 지나간 흔적. 그날의 장면을 한 장씩 모읍니다.</p>
+  </section>
+
+  <main id="zine">
+    <!-- photos.json 으로부터 자동 생성됩니다 -->
+  </main>
+
+  <footer class="site-footer">
+    <span>&copy; <span id="yr"></span> Hyunsu Park</span>
+    <span><a href="https://instagram.com/hyunsupark" target="_blank" rel="noopener">@hyunsupark</a></span>
+  </footer>
+
+  <!-- 라이트박스 -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lb-close" id="lb-close">CLOSE &times;</button>
+    <button class="lb-btn lb-prev" id="lb-prev" aria-label="이전">&lsaquo;</button>
+    <figure>
+      <img id="lb-img" src="" alt="">
+      <figcaption id="lb-cap"></figcaption>
+      <div class="lb-meta" id="lb-meta"></div>
+    </figure>
+    <button class="lb-btn lb-next" id="lb-next" aria-label="다음">&rsaquo;</button>
+  </div>
+
+  <script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
